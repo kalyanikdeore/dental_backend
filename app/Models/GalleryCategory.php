@@ -1,5 +1,5 @@
 <?php
-// app/Models/GalleryCategory.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ class GalleryCategory extends Model
         'clinic_id',
         'name',
         'order',
-        'is_active'
+        'is_active',
     ];
 
     protected $casts = [
@@ -24,7 +24,7 @@ class GalleryCategory extends Model
 
     public function clinic(): BelongsTo
     {
-        return $this->belongsTo(Clinic::class);
+        return $this->belongsTo(Clinic::class, 'clinic_id');
     }
 
     public function images(): HasMany
@@ -44,6 +44,6 @@ class GalleryCategory extends Model
 
     public function scopeOrdered($query)
     {
-        return $query->orderBy('order', 'asc');
+        return $query->orderBy('order');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ class Clinic extends Model
     protected $fillable = [
         'slug',
         'name',
-        'is_active'
+        'is_active',
     ];
 
     protected $casts = [
@@ -21,7 +22,7 @@ class Clinic extends Model
 
     public function categories(): HasMany
     {
-        return $this->hasMany(GalleryCategory::class);
+        return $this->hasMany(GalleryCategory::class, 'clinic_id');
     }
 
     public function activeCategories()

@@ -35,14 +35,16 @@ class GalleryImageResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required()
+                    ->disk('public')
                     ->directory('gallery')
                     ->visibility('public')
-                    ->maxSize(5120)
+                    ->maxSize(5120) // 5MB
                     ->imageResizeMode('cover')
                     ->imageResizeTargetWidth('800')
                     ->imageResizeTargetHeight('600')
-                    ->imagePreviewHeight('200'),
-                    // ->helperText('Recommended aspect ratio: 4:3 (800×600)'),
+                    ->imagePreviewHeight('200')
+                    ->preserveFilenames() // Keep original filenames
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp']),
                 
                 Forms\Components\TextInput::make('alt_text')
                     ->label('Alt Text')
@@ -65,9 +67,12 @@ class GalleryImageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
+                    ->disk('public')
                     ->size(100)
                     ->height(60)
-                    ->extraImgAttributes(['class' => 'object-cover']),
+                    ->extraImgAttributes(['class' => 'object-cover'])
+                    ->url(fn ($record) => $record->image_url)
+                    ->openUrlInNewTab(),
                 
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Category')
@@ -89,6 +94,12 @@ class GalleryImageResource extends Resource
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean()
                     ->label('Active'),
+                
+                Tables\Columns\TextColumn::make('image_url')
+                    ->label('Image URL')
+                    ->copyable()
+                    ->copyMessage('URL copied!')
+                    ->limit(50),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')
@@ -107,6 +118,10 @@ class GalleryImageResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('view_image')
+                    ->url(fn ($record) => $record->image_url)
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-eye'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

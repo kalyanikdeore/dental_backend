@@ -1,5 +1,5 @@
 <?php
-// app/Models/GalleryImage.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,23 +15,14 @@ class GalleryImage extends Model
         'image',
         'alt_text',
         'order',
-        'is_active'
+        'is_active',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
 
-    public function getImageUrlAttribute()
-    {
-        if ($this->image) {
-            if (filter_var($this->image, FILTER_VALIDATE_URL)) {
-                return $this->image;
-            }
-            return asset('uploads/' . $this->image);
-        }
-        return null;
-    }
+    protected $appends = ['image_url'];
 
     public function category(): BelongsTo
     {
@@ -46,5 +37,20 @@ class GalleryImage extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('order', 'asc');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) return null;
+
+        if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return $this->image;
+        }
+
+        if (file_exists(public_path('uploads/' . $this->image))) {
+            return asset('uploads/' . $this->image);
+        }
+
+        return null;
     }
 }
