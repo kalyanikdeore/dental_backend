@@ -16,6 +16,9 @@ use App\Http\Controllers\Api\WhyChooseUsPointController;
 use App\Http\Controllers\Api\PageSettingController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BlogPostController;
+use App\Http\Controllers\Api\TreatmentController;
+use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\ClinicsTreatmentController;
 
 
 Route::prefix('api')->group(function() {
@@ -43,14 +46,19 @@ Route::get('/blog/recent', [BlogController::class, 'recent']);
 Route::get('/blog/categories', [BlogController::class, 'categories']); 
 Route::get('/blog/category/{category}', [BlogController::class, 'byCategory']);
 Route::get('/blog/{slug}', [BlogController::class, 'show']);
+
+
+
+Route::post('appointments', [AppointmentController::class, 'store']);
+Route::get('/treatments/navigation', [TreatmentController::class, 'navigationMenu']);
+Route::get('/treatments/navbar', [TreatmentController::class, 'navbarTreatments']);
+Route::get('/treatments', [TreatmentController::class, 'index']);
+Route::get('/treatments/{slug}', [TreatmentController::class, 'showBySlug']);
+Route::get('/treatments/id/{id}', [TreatmentController::class, 'show']);
+Route::get('/treatments/{slug}/why-choose-us', [TreatmentController::class, 'whyChooseUs']);
+Route::get('clinics-treatments', [ClinicsTreatmentController::class, 'index']);
+
+
 });
 
-// Route::get('/', function () {
-    
-//   Route::get('/hero-sections', [HeroSectionController::class, 'index']);
-//   // routes/api.php
-//   Route::get('/gallery/clinics', [GalleryController::class, 'clinics']);
-//   Route::get('/gallery/clinic/{clinicSlug}', [GalleryController::class, 'clinicGallery']);
-//   Route::get('/gallery/clinic/{clinicSlug}/categories', [GalleryController::class, 'clinicCategories']);
-  
-// });
+

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller\Api;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
