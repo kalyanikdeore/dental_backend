@@ -14,6 +14,8 @@ class WhyChooseUsResource extends Resource
     protected static ?string $model = WhyChooseUs::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
+       protected static ?string $navigationGroup = 'Home Page ';
+    protected static ?string $navigationLabel = 'Why Choose us ';
 
     public static function form(Form $form): Form
     {

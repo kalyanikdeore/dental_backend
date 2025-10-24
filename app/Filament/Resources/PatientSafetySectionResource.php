@@ -16,9 +16,12 @@ class PatientSafetySectionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
     
-    protected static ?string $navigationGroup = 'Content Management';
+
     
-    protected static ?string $navigationLabel = 'Patient Safety';
+  
+
+       protected static ?string $navigationGroup = 'Patient Safety Page ';
+    protected static ?string $navigationLabel = 'Patient Safety ';
     
     public static function getNavigationBadge(): ?string
     {

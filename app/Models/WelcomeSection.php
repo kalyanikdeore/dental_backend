@@ -15,6 +15,9 @@ class WelcomeSection extends Model
         'highlights',
         'cta_text',
         'cta_link',
+        'image_1',
+        'image_2',
+        'image_3',
     ];
 
     protected $casts = [

@@ -15,9 +15,12 @@ Schema::create('welcome_sections', function (Blueprint $table) {
     $table->id();
     $table->string('title');
     $table->text('description');
-    $table->json('highlights'); // e.g. ["22+ Years Experience", "17000+ Patients"]
+    $table->json('highlights'); 
     $table->string('cta_text')->nullable();
     $table->string('cta_link')->nullable();
+    $table->string('image_1')->nullable();
+    $table->string('image_2')->nullable();
+    $table->string('image_3')->nullable();
     $table->timestamps();
 });
     }

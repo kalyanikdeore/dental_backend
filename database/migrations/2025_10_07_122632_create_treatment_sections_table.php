@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('list_title')->nullable();
             $table->json('list_items')->nullable();
             $table->json('subsections')->nullable();
-            $table->json('ordered_list')->nullable();
+            $table->json('ordered_list')->nullable();   
             $table->text('note')->nullable();
             $table->string('image')->nullable();
             $table->integer('order')->default(0);

@@ -17,9 +17,14 @@ use App\Http\Controllers\Api\PageSettingController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BlogPostController;
 use App\Http\Controllers\Api\TreatmentController;
-use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\ClinicsTreatmentController;
-
+use App\Http\Controllers\Api\AboutController;
+use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\ContactInformationController;
+// use App\Http\Controllers\Api\BookAppointmentController;
+use App\Http\Controllers\Api\PopupController;
+use App\Http\Controllers\Api\CtaController;
 
 Route::prefix('api')->group(function() {
 Route::get('/gallery/clinics', [GalleryController::class, 'clinics']);
@@ -41,23 +46,23 @@ Route::get('/why-choose-us-points', [WhyChooseUsPointController::class, 'index']
 Route::get('/page-settings', [PageSettingController::class, 'index']);
 Route::post('/page-settings', [PageSettingController::class, 'store']);
 Route::post('/page-settings/{id}/activate', [PageSettingController::class, 'activate']);
-Route::get('/blog', [BlogController::class, 'index']); 
-Route::get('/blog/recent', [BlogController::class, 'recent']); 
-Route::get('/blog/categories', [BlogController::class, 'categories']); 
-Route::get('/blog/category/{category}', [BlogController::class, 'byCategory']);
-Route::get('/blog/{slug}', [BlogController::class, 'show']);
+ Route::get('/blogs', [BlogController::class, 'index']);
+    Route::get('/   /categories', [BlogController::class, 'categories']);
+    Route::get('/blogs/{slug}', [BlogController::class, 'show']);
+    Route::get('/blogs/{slug}/recent', [BlogController::class, 'recentPosts']);
+Route::get('/about-story', [AboutController::class, 'getStory']);
+Route::get('/vision-mission', [AboutController::class, 'getVisionMission']); 
+Route::get('/team-members', [AboutController::class, 'getTeamMembers']);
+Route::get('/contact-information', [ContactInformationController::class, 'index']);
+Route::get('/active-popup', [PopupController::class, 'getActivePopup']);
+Route::get('/cta', [CtaController::class, 'index']); 
 
-
-
-Route::post('appointments', [AppointmentController::class, 'store']);
-Route::get('/treatments/navigation', [TreatmentController::class, 'navigationMenu']);
-Route::get('/treatments/navbar', [TreatmentController::class, 'navbarTreatments']);
+// Treatment routes with slug support
 Route::get('/treatments', [TreatmentController::class, 'index']);
-Route::get('/treatments/{slug}', [TreatmentController::class, 'showBySlug']);
-Route::get('/treatments/id/{id}', [TreatmentController::class, 'show']);
-Route::get('/treatments/{slug}/why-choose-us', [TreatmentController::class, 'whyChooseUs']);
-Route::get('clinics-treatments', [ClinicsTreatmentController::class, 'index']);
-
+Route::get('/treatments/{treatment}', [TreatmentController::class, 'show']); // This now uses slug automatically
+Route::get('/treatments/{treatment}/faqs', [TreatmentController::class, 'treatmentFaqs']);
+Route::get('/treatments/{treatment}/why-choose-us', [TreatmentController::class, 'whyChooseUs']);
+Route::get('/treatments/{treatment}/appointments', [TreatmentController::class, 'treatmentAppointments']);
 
 });
 

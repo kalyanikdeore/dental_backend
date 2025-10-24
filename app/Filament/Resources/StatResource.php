@@ -16,8 +16,9 @@ class StatResource extends Resource
     protected static ?string $model = Stat::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
-
-    protected static ?string $navigationGroup = 'Content Management';
+   protected static ?string $navigationGroup = 'Home Page ';
+    protected static ?string $navigationLabel = 'Stat ';
+    
 
     public static function form(Form $form): Form
     {

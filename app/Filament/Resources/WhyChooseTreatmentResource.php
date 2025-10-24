@@ -15,7 +15,8 @@ class WhyChooseTreatmentResource extends Resource
     protected static ?string $model = WhyChooseTreatment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-check-badge';
-    protected static ?string $navigationGroup = 'Treatments';
+          protected static ?string $navigationGroup = 'Treatment page ';
+
     protected static ?string $navigationLabel = 'Why Choose Items';
     protected static ?int $navigationSort = 2;
 

@@ -9,21 +9,15 @@ class AppointmentTreatment extends Model
 {
     use HasFactory;
 
+    protected $table = 'appointment_treatments';
+
     protected $fillable = [
-        'treatment_id',
-        'name',
-        'email',
-        'phone',
-        'clinic_location',
-        'preferred_date',
-        'preferred_time',
-        'message',
-        'status',
+        'treatment_id', 'name', 'deolali_phone', 'nashik_phone',
+        'preferred_date', 'preferred_time'
     ];
 
     protected $casts = [
         'preferred_date' => 'date',
-        'preferred_time' => 'datetime:H:i',
     ];
 
     public function treatment()

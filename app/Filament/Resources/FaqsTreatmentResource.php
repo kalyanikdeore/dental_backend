@@ -15,7 +15,8 @@ class FaqsTreatmentResource extends Resource
     protected static ?string $model = FaqsTreatment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
-    protected static ?string $navigationGroup = 'Treatments';
+          protected static ?string $navigationGroup = 'Treatment page ';
+
     protected static ?string $navigationLabel = 'FAQs';
     protected static ?int $navigationSort = 3;
 

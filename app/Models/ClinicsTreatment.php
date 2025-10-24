@@ -12,29 +12,11 @@ class ClinicsTreatment extends Model
     protected $table = 'clinics_treatments';
 
     protected $fillable = [
-        'name',
-        'slug',
-        'address',
-        'phone',
-        'email',
-        'hours',
-        'map_embed',
-      
-        'is_active',
-        'order',
+        'name', 'slug', 'address', 'phone', 'email', 
+        'hours', 'map_embed', 'is_active', 'order'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
-
-    public function scopeOrdered($query)
-    {
-        return $query->orderBy('order')->orderBy('name');
-    }
 }

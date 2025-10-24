@@ -18,6 +18,10 @@ class TreatmentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
 
+          protected static ?string $navigationGroup = 'Treatment page ';
+    protected static ?string $navigationLabel = 'Treatments  ';
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -110,6 +114,7 @@ class TreatmentResource extends Resource
             RelationManagers\SectionsRelationManager::class,
             RelationManagers\FaqsTreatmentRelationManager::class,
             RelationManagers\WhyChooseTreatmentRelationManager::class,
+            RelationManagers\AppointmentTreatmentRelationManager::class, 
         ];
     }
 

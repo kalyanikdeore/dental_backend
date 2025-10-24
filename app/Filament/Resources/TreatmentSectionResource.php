@@ -15,7 +15,8 @@ class TreatmentSectionResource extends Resource
     protected static ?string $model = TreatmentSection::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationGroup = 'Treatments';
+          protected static ?string $navigationGroup = 'Treatment page ';
+
 
     public static function form(Form $form): Form
     {
